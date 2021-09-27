@@ -1,11 +1,10 @@
-# ifpb_iot
 
-Objetivo
+# Prática 1 (3 exercícios) #ifpbiot
 
 O objetivo desta atividade é utilizar a porta serial (USB) como caminho de comunicação entre o computador e o Arduino. 
 
 
-== Exercício 1 ==
+## Exercício 1
 
 Implantar o código que realiza um loop escrevendo uma mensagem na porta serial do Arduino para o Computador.  
 
@@ -19,20 +18,20 @@ Erro abrindo a porta serial "/dev/ttyUSB0". Tente consultar a documentação em 
 
 > Terminal:
 
-$ ls -l /dev/ttyUSB*
+> $ ls -l /dev/ttyUSB*
 
-crw-rw---- 1 root dialout 188, 0 set 20 11:05 /dev/ttyUSB0
+> crw-rw---- 1 root dialout 188, 0 set 20 11:05 /dev/ttyUSB0
 
-$ sudo usermod -a -G dialout yuri
+> $ sudo usermod -a -G dialout yuri
 
-$ shutdown -r now 
+> $ shutdown -r now 
 
 2. Abrir o Monitor Serial (Ferramentas -> Monitor Serial)
 3. Copiar o código (exercicio1.c) e implantar no Arduino.
 
 
 
-== Exercício 2 ==
+## Exercício 2
 
 
 Implantar o código que realiza um loop lendo uma mensagem na porta serial do Computador para o Arduino.  
@@ -42,16 +41,16 @@ Implantar o código que realiza um loop lendo uma mensagem na porta serial do Co
 2. Copiar o código (exercicio2.c) e implantar no Arduino.
 
 
-== Exercicio 3 ==
+## Exercicio 3
 
 Ler a porta serial a partir de uma aplicação feita em python
 
 1. Implantar o código do exercicio1.c no arduino
 2. Instalar a biblioteca PySerial
 
-$ pip install pyserial
+> pip install pyserial
 
 3. Executar o código em python exercicio3.py
 
-$ python3 exercicio3.py
+> $ python3 exercicio3.py
 
