@@ -1,0 +1,25 @@
+INDEX VERSION 1.131+/home/yuri/iffpb/aluno_especial/iot/workspace/pratica1/.metadata/.plugins/org.eclipse.jdt.core
+2852874698.index
+4287588188.index
+1438523778.index
+2816510965.index
+3810323666.index
+3759086949.index
+1928756493.index
+2405139114.index
+1342943168.index
+4038675967.index
+2125808958.index
+971746232.index
+2086122377.index
+3931129250.index
+657714213.index
+939511576.index
+2890784908.index
+1377838351.index
+624288547.index
+2158856257.index
+358220131.index
+3923965826.index
+581548465.index
+299880077.index

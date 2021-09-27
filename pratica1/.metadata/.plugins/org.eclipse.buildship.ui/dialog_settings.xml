@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.buildship.ui.wizard.project.creation">
+		<item key="project_location" value="/home/yuri/iffpb/aluno_especial/iot/workspace/pratica1/webserial"/>
+		<item key="use_default_location" value="true"/>
+	</section>
+</section>

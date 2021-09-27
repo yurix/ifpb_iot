@@ -1,0 +1,67 @@
+package webserial;
+
+import javax.servlet.ServletException;
+
+import com.fazecast.jSerialComm.SerialPort;
+import com.fazecast.jSerialComm.SerialPortDataListener;
+import com.fazecast.jSerialComm.SerialPortEvent;
+
+import io.undertow.Handlers;
+import io.undertow.Undertow;
+import io.undertow.server.handlers.PathHandler;
+import io.undertow.servlet.Servlets;
+import io.undertow.servlet.api.DeploymentInfo;
+import io.undertow.servlet.api.DeploymentManager;
+
+public class WebSerialServer {
+
+public static void main(String[] args) throws Exception {
+	
+	if (SerialPort.getCommPorts().length>0) {
+		SerialPort comPort = SerialPort.getCommPort("/dev/ttyUSB0");
+		
+		System.out.println(OScomPort.getSystemPortName());
+		comPort.openPort();
+		comPort.addDataListener(new SerialPortDataListener() {
+		   @Override
+		   public int getListeningEvents() { return SerialPort.LISTENING_EVENT_DATA_AVAILABLE; }
+		   @Override
+		   public void serialEvent(SerialPortEvent event)
+		   {
+		      if (event.getEventType() != SerialPort.LISTENING_EVENT_DATA_AVAILABLE)
+		         return;
+		      byte[] newData = new byte[comPort.bytesAvailable()];
+		      int numRead = comPort.readBytes(newData, newData.length);
+		      
+		      DataLoggerSingleton.getInstance().writeData(newData.toString());
+		      
+		   }
+		});
+	} else {
+		throw new Exception("Impossível iniciar o WebSerial. Não existe portas seriais disponíveis.");
+	}
+	
+	//inicia o servidor como undertow
+	
+	DeploymentInfo servletBuilder = Servlets.deployment()
+	        .setClassLoader(WebSerialServer.class.getClassLoader())
+	        .setContextPath("/")
+	        .setDeploymentName("wso2fake.war")
+	        .addServlets(
+	                Servlets.servlet("WriteSerialServlet", WriteSerialServlet.class).addMapping("/write"),
+	                Servlets.servlet("ReadSerialServlet", ReadSerialServlet.class).addMapping("/read")
+	         );
+
+	DeploymentManager manager = Servlets.defaultContainer().addDeployment(servletBuilder);
+	manager.deploy();
+	PathHandler path = Handlers.path(Handlers.redirect("/"))
+	        .addPrefixPath("/", manager.start());
+
+	Undertow server = Undertow.builder()
+	        .addHttpListener(8085, "localhost")
+	        .setHandler(path)
+	        .build();
+	server.start();
+
+}
+}
