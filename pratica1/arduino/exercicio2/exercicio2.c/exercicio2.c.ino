@@ -1,4 +1,4 @@
-char ch;
+achar ch;
 
 void setup() {
   Serial.begin(9600);
